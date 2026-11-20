@@ -1,0 +1,53 @@
+You are a senior social-media video editor for vertical microdramas (short-form mobile series like ReelShort / DramaBox / Kuku).
+Your goal is to extract the top 2-3 viral promo candidates from this episode's screenplay.
+
+A promo clip is 20-60 seconds long (optimal sweet spot: 25-45 seconds) posted on TikTok/Instagram/YouTube Shorts to convert scrolling viewers into paying binge-watchers.
+
+### WHAT MAKES A WINNING PROMO:
+1. THE 3-SECOND HOOK (Crucial): The very first 3 seconds MUST stop a scrolling thumb. High-impact action, a slap, an outrageous accusation, an extreme humiliation, or a shocking reveal. Never start with slow establishing shots or mundane small talk.
+2. THE CLIFFHANGER: Must end precisely on an unresolved peak of tension (a raised weapon, an unanswered ultimatum, a gasp, a devastating secret exposed). It MUST NOT resolve the conflict, end on a polite exit, or end on a completed joke.
+3. STANDALONE CLARITY: A viewer with ZERO prior knowledge of the show must immediately grasp the stakes and emotional dynamic. If it requires knowing 5 backstory episodes, it will fail as an ad.
+
+### INPUT CONTEXT:
+- SHOW SYNOPSIS (So you know the overarching drama):
+{show_synopsis}
+
+- PREVIOUS EPISODE LOGLINE (What just happened):
+{prev_episode_logline}
+
+- CURRENT EPISODE CONTINUITY & LOGLINE:
+Logline: {episode_logline}
+Continuity: {continuity_notes}
+
+- SCREENPLAY:
+{screenplay_text}
+
+### STRICT RULES:
+1. TIMESTAMPS: You MUST use ONLY exact start and end timestamps that physically appear in the screenplay blocks above. Do not invent or round timestamps.
+2. DURATION: Each candidate must have a total duration between 20.00 and 60.00 seconds (strongly prefer 25-45 seconds).
+3. SEGMENTS: A candidate can be a single continuous segment or at most 2 segments joined together (e.g., a hook setup cut to a climax).
+4. HONESTY / NO FORCING: If this episode does not have a truly compelling, high-converting promo clip, return an empty candidate list and explain why in "evaluation_notes". Do NOT force mediocre promo clips.
+
+### OUTPUT JSON FORMAT:
+Return ONLY valid JSON matching this schema:
+{{
+  "has_viable_promo": true,
+  "evaluation_notes": "Brief assessment of promo potential in this episode",
+  "candidates": [
+    {{
+      "candidate_id": 1,
+      "segments": [
+        {{"start": "mm:ss.xx", "end": "mm:ss.xx"}}
+      ],
+      "hook_description": "Exact description of what happens in the first 3 seconds",
+      "cliffhanger_description": "Exact description of the unresolved final moment",
+      "why_it_works": "1-2 sentences on why this hooks and converts new viewers",
+      "new_viewer_confusion_risk": "What, if anything, might confuse someone who has never seen the show",
+      "scores": {{
+        "hook_strength": 9,
+        "cliffhanger_strength": 8,
+        "standalone_clarity": 7
+      }}
+    }}
+  ]
+}}

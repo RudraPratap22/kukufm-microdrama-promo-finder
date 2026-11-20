@@ -1,0 +1,23 @@
+# Confidential data & inputs
+data/
+*.zip
+
+# Outputs containing screenplay text & cache
+output/
+outputs/
+.cache/
+cache/
+*.log
+
+# Environment & credentials
+.env
+config.yaml
+NOTES.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/

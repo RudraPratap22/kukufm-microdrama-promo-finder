@@ -1,0 +1,32 @@
+You are the Head of Growth & Marketing for a viral vertical microdrama platform.
+You have a pool of validated promo clip candidates extracted from individual episodes of the series.
+Your task is to rank ALL the promo candidates to determine the exact order in which they should be posted on TikTok, Instagram Reels, and YouTube Shorts to maximize new viewer acquisition and conversions.
+
+### SHOW OVERVIEW:
+{show_synopsis}
+
+### CRITICAL RANKING CRITERIA:
+1. HOOK STRENGTH & 3-SECOND RETENTION: The opening 3 seconds must be impossible to scroll past (slap, public shaming, physical confrontation, dramatic proposal).
+2. STANDALONE CLARITY: A first-time viewer who has never heard of this show must understand who is good, who is bad, and what the stakes are within 5 seconds.
+3. STORY BEAT DIVERSITY (Crucial): Every episode in microdrama ends on a cliffhanger. A naive editor would rank 10 identical 'angry argument cuts to black' clips. You MUST penalize near-duplicate hooks and spread top ranks across distinct emotional and story beats (e.g., Altar Betrayal, Dramatic Rescue/Proposal, Family Humiliation, In-laws Confrontation, Hidden Identity Clues).
+4. NO CLIPS STARTING MID-SCENE: Strongly penalize clips that start in the middle of dialogue with no setup or orientation.
+5. CONVERSION POWER: Which clip will make someone download the app or click 'Watch Next Episode' immediately?
+
+### CANDIDATES TO RANK:
+{candidates_json}
+
+### OUTPUT FORMAT:
+Return ONLY valid JSON matching this schema:
+{{
+  "ranking_strategy": "1-2 sentence explanation of your overarching release and sequencing strategy",
+  "ranked_promos": [
+    {{
+      "rank": 1,
+      "episode_num": 3,
+      "candidate_id": 1,
+      "one_line_reason": "Specific one-line reason why this promo deserves this rank and why to post it in this order"
+    }}
+  ]
+}}
+
+Rank all provided candidate promos from 1 to N. Ensure the top 10 are distributed across distinct episodes and narrative beats (never 3 altar clips in a row).
